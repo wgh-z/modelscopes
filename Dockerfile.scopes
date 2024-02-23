@@ -1,0 +1,44 @@
+# docker run --rm --gpus all -it -v D:\Projects\python\product_demonstration\product_demonstration\modelscopes:/home/appuser/modelscopes --name modelscopes modelscopes:latest
+
+FROM pytorch/pytorch:2.0.1-cuda11.7-cudnn8-runtime
+
+# Arguments to build Docker Image using CUDA
+# ARG USE_CUDA=0
+# ARG TORCH_ARCH=
+
+# ENV AM_I_DOCKER True
+# ENV BUILD_WITH_CUDA "${USE_CUDA}"
+# ENV TORCH_CUDA_ARCH_LIST "${TORCH_ARCH}"
+# # ENV CUDA_HOME /usr/local/cuda-11.7/
+
+# ENV DEBIAN_FRONTEND=noninteractive
+
+RUN /bin/bash -c 'conda init bash'
+
+RUN mkdir -p /home/appuser/modelscopes
+# COPY mPlug_api.py /home/appuser/mPlug/
+WORKDIR /home/appuser/modelscopes
+
+# modelscope缓存目录
+ENV MODELSCOPE_CACHE /home/appuser/modelscopes/weight
+
+# 换源并更新pip
+RUN pip config set global.index-url https://pypi.mirrors.ustc.edu.cn/simple/
+RUN pip install --upgrade pip
+
+# 将原镜像地址替换为阿里云镜像地址
+RUN sed -i 's/archive.ubuntu.com/mirrors.cloud.tencent.com/g' /etc/apt/sources.list
+RUN sed -i 's/security.ubuntu.com/mirrors.cloud.tencent.com/g' /etc/apt/sources.list
+RUN apt update && apt install --no-install-recommends -y build-essential &&\
+    apt clean && apt autoremove && rm -rf /var/lib/apt/lists/*
+
+# RUN pip install --no-cache-dir modelscope
+# RUN pip install --no-cache-dir "modelscope[multi-modal]" -f https://modelscope.oss-cn-beijing.aliyuncs.com/releases/repo.html
+RUN pip install --no-cache-dir "modelscope[cv]" -f https://modelscope.oss-cn-beijing.aliyuncs.com/releases/repo.html
+# RUN pip install --no-cache-dir "modelscope[nlp]" -f https://modelscope.oss-cn-beijing.aliyuncs.com/releases/repo.html
+# RUN pip install --no-cache-dir "modelscope[audio]" -f https://modelscope.oss-cn-beijing.aliyuncs.com/releases/repo.html
+# RUN pip install --no-cache-dir "modelscope[science]" -f https://modelscope.oss-cn-beijing.aliyuncs.com/releases/repo.html
+RUN pip install --no-cache-dir flask==2.2.3 flask_Cors==3.0.10 flask_socketio==5.3.6
+    # fastapi uvicorn
+
+# CMD ["python", "mPlug_api.py"]
