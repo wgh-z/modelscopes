@@ -15,8 +15,8 @@ __pycache__
 # ! /weights/yolov5s.pt
 /datasets
 /dependence
-main2.py
 *.mp4
 *.zip
 *.xlsx
 *.jpg
+*.avi
