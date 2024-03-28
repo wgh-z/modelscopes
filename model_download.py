@@ -17,6 +17,8 @@ from modelscope import snapshot_download
 
 # model_dir = snapshot_download('damo/cv_yolov5_video-multi-object-tracking_fairmot', cache_dir='./weight')  # 人脸关键点检测
 
-# model_dir = snapshot_download('damo/nlp_csanmt_translation_en2zh_base', cache_dir='./nlp_csanmt_translation_en2zh_base', revision='v1.0.1')
+# model_dir = snapshot_download('damo/nlp_csanmt_translation_en2zh_base', cache_dir='./weight', revision='v1.0.1')  # 英译中
+
+# model_dir = snapshot_download('/damo/mplug_image-captioning_coco_base_zh', , cache_dir='./weight')  # 图像描述
 
 model_dir = snapshot_download('iic/speech_paraformer-large_asr_nat-zh-cn-16k-common-vocab8404-online-onnx')  # 语音识别
