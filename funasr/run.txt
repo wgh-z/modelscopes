@@ -1,0 +1,1 @@
+docker run -p 10096:10095 -it --rm --privileged=true -v E:\Projects\weight\modelscope\weight:/workspace/models --name asr registry.cn-hangzhou.aliyuncs.com/funasr_repo/funasr:funasr-runtime-sdk-online-cpu-0.1.4
