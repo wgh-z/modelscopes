@@ -1,4 +1,4 @@
-# docker run --rm --gpus all -it -v D:\Projects\python\product_demonstration\product_demonstration\modelscopes:/home/appuser/modelscopes --name modelscopes modelscopes:latest
+# docker run --rm --gpus all -it -v D:\Projects\python\modelscopes:/home/appuser/modelscopes -v E:\Projects\weights\modelscope\weight:/home/appuser/modelscopes/weight --name modelscopes modelscopes:latest
 
 FROM pytorch/pytorch:2.0.1-cuda11.7-cudnn8-runtime
 
