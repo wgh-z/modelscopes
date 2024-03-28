@@ -15,4 +15,8 @@ from modelscope import snapshot_download
 # model_dir = snapshot_download('damo/cv_resnet18_card_correction')  # 票证检测矫正
 # model_dir = snapshot_download('damo/cv_ResNetC3D_action-detection_detection2d')  # 日常动作检测（举手、吃喝、吸烟、打电话、玩手机、趴桌睡觉、跌倒、洗手、拍照）
 
-model_dir = snapshot_download('damo/cv_yolov5_video-multi-object-tracking_fairmot', cache_dir='./weight')  # 人脸关键点检测
+# model_dir = snapshot_download('damo/cv_yolov5_video-multi-object-tracking_fairmot', cache_dir='./weight')  # 人脸关键点检测
+
+# model_dir = snapshot_download('damo/nlp_csanmt_translation_en2zh_base', cache_dir='./nlp_csanmt_translation_en2zh_base', revision='v1.0.1')
+
+model_dir = snapshot_download('iic/speech_paraformer-large_asr_nat-zh-cn-16k-common-vocab8404-online-onnx')  # 语音识别
